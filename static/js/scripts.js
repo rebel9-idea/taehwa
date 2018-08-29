@@ -979,6 +979,9 @@ window.addEventListener('load', init, false);
 				$("#recordButton").text('Recording...');
 				$('#live_wave').show();
 
+				$('.record_ui .text_wrap p').html('RECORDING...')
+				$('.record_ui .controls').hide();
+
 				// open Tone.js mic
 				mic.open();
 			
@@ -1090,6 +1093,7 @@ window.addEventListener('load', init, false);
 		$("#recordButton").text('Re-Record');
 		$(".record_ui .text_wrap p").html('You can re-record the snippet if you wish.<br>Click on <strong>SUBMIT</strong> to continue.');
 		$('#submitButton').show();
+		$('.record_ui .controls').show();
 		$('#recordingsList').show();
 
 		$("#stopButton").addClass('disabled');
