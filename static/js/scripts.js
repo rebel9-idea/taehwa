@@ -1641,20 +1641,20 @@ window.addEventListener('load', init, false);
 			// }
 			
 
-			// // make autocomplete for search
-		 //    for (var y = 0; y < server_data.length; y++) {
-		 //    	autocomplete_data.push(server_data[y].location.city);
-		 //    }
-		 //    //  clear duplicate cities from array
-			// $.each(autocomplete_data, function(y, el){
-			// if($.inArray(el, autocomplete_filtered) === -1) autocomplete_filtered.push(el);
-			// });
-			// // sort array alphabetically
-			// autocomplete_filtered.sort();
+			// make autocomplete for search
+		    for (var y = 0; y < server_data.length; y++) {
+		    	autocomplete_data.push(server_data[y].location.city);
+		    }
+		    //  clear duplicate cities from array
+			$.each(autocomplete_data, function(y, el){
+			if($.inArray(el, autocomplete_filtered) === -1) autocomplete_filtered.push(el);
+			});
+			// sort array alphabetically
+			autocomplete_filtered.sort();
 
-		 //    $( "#search_input" ).autocomplete({
-		 //      source: autocomplete_filtered
-		 //    });
+		    $( "#search_input" ).autocomplete({
+		      source: autocomplete_filtered
+		    });
 
 		}
 
