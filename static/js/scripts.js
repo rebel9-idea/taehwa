@@ -1623,12 +1623,12 @@ window.addEventListener('load', init, false);
 			    waveColor: '#717171',
 			    progressColor: '#717171',
 			    responsive: true,
-			});
-			if (is_debugging) {
-				wavesurfers[i].load(domain+'sound/'+server_data_list[i].mediafname);
-			} else {
-				wavesurfers[i].load(domain+'/musicfile/'+server_data_list[i].mediafname);
-			}
+			}).load(domain+'/musicfile/'+server_data_list[i].mediafname);
+			// if (is_debugging) {
+			// 	wavesurfers[i].load(domain+'sound/'+server_data_list[i].mediafname);
+			// } else {
+			// 	wavesurfers[i].load(domain+'/musicfile/'+server_data_list[i].mediafname);
+			// }
 			
 
 			// make autocomplete for search
