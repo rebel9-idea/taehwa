@@ -856,8 +856,6 @@ window.addEventListener('load', init, false);
 
 	//add events to those 2 buttons
 	$("#recordButton").click(function() {
-		// open Tone.js mic
-		mic.open();
 		beginRecording();
 	})
 	$("#stopButton").click(function() {
@@ -880,8 +878,8 @@ window.addEventListener('load', init, false);
 			getUserLocation();
 			console.log("getUserMedia() success, stream created, initializing WebAudioRecorder...");
 
-			// // open Tone.js mic
-			// mic.open();
+			// open Tone.js mic
+			mic.open();
 
 			getUserMediaState = 'open';
 
