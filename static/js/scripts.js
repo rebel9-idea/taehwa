@@ -1627,34 +1627,34 @@ window.addEventListener('load', init, false);
 			');
 
 			
-			wavesurfers[i] = WaveSurfer.create({
-			    container: '#archive_id_sound_'+i,
-			    scrollParent: false,
-			    waveColor: '#717171',
-			    progressColor: '#717171',
-			    responsive: true,
-			});
-			if (is_debugging) {
-				wavesurfers[i].load(domain+'sound/'+server_data_list[i].mediafname);
-			} else {
-				wavesurfers[i].load(domain+'/musicfile/'+server_data_list[i].mediafname);
-			}
+			// wavesurfers[i] = WaveSurfer.create({
+			//     container: '#archive_id_sound_'+i,
+			//     scrollParent: false,
+			//     waveColor: '#717171',
+			//     progressColor: '#717171',
+			//     responsive: true,
+			// });
+			// if (is_debugging) {
+			// 	wavesurfers[i].load(domain+'sound/'+server_data_list[i].mediafname);
+			// } else {
+			// 	wavesurfers[i].load(domain+'/musicfile/'+server_data_list[i].mediafname);
+			// }
 			
 
-			// make autocomplete for search
-		    for (var y = 0; y < server_data.length; y++) {
-		    	autocomplete_data.push(server_data[y].location.city);
-		    }
-		    //  clear duplicate cities from array
-			$.each(autocomplete_data, function(y, el){
-			if($.inArray(el, autocomplete_filtered) === -1) autocomplete_filtered.push(el);
-			});
-			// sort array alphabetically
-			autocomplete_filtered.sort();
+			// // make autocomplete for search
+		 //    for (var y = 0; y < server_data.length; y++) {
+		 //    	autocomplete_data.push(server_data[y].location.city);
+		 //    }
+		 //    //  clear duplicate cities from array
+			// $.each(autocomplete_data, function(y, el){
+			// if($.inArray(el, autocomplete_filtered) === -1) autocomplete_filtered.push(el);
+			// });
+			// // sort array alphabetically
+			// autocomplete_filtered.sort();
 
-		    $( "#search_input" ).autocomplete({
-		      source: autocomplete_filtered
-		    });
+		 //    $( "#search_input" ).autocomplete({
+		 //      source: autocomplete_filtered
+		 //    });
 
 		}
 
