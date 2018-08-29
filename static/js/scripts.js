@@ -2013,11 +2013,11 @@ window.addEventListener('load', init, false);
 			getData()	
 		}
 		
-		var initMoonRipple = new CanvasSlideshow({
-			sprites: spriteImagesSrc,
-			displacementImage: 'img/ripple.jpg',
-			autoPlay: true,
-		});
+		// var initMoonRipple = new CanvasSlideshow({
+		// 	sprites: spriteImagesSrc,
+		// 	displacementImage: 'img/ripple.jpg',
+		// 	autoPlay: true,
+		// });
 
 
 	}
