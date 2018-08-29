@@ -18,16 +18,16 @@ var average_session_fft = 0;
 // GENERAL STUFF
 var is_debugging = false;
 
-var domain;
-var server_data;
-var server_data_list;
 if (is_debugging) {
-	domain = "";
-	server_data = main_data;
-	server_data_list = main_data;
+	var domain = "";
+	var server_data = main_data;
+	var server_data_list = main_data;
 
 }else {
-	domain = "https://summon.project9.co.kr/";
+	var domain = "https://summon.project9.co.kr/";
+	var data_page_current = 1;
+	var data_page_length;
+	var next_page_data;
 }
 
 var data_to_post;
@@ -69,8 +69,6 @@ function getData() {
 	    // print the output from the endpoint
 	    console.log('getData data:', json.data);
 	    server_data = json.data;
-	    // assign list data seperately
-	    server_data_list = json.data;
 	    
 	    // run everything once data is ready 
 
@@ -104,6 +102,28 @@ function getData() {
 	})
 	.always(function() {
 		console.log('getData() request made')
+	});
+
+
+	// get first page of data for list view
+	$.ajax({
+	  method: "GET",
+	  url: domain+"/music?action=pagination&page_size=5",
+	  crossDomain: true
+	}).done(function(json, textStatus, jqXHR) {
+	    // print the output from the endpoint
+	    console.log('get list data:', json.data.data);
+
+	    // assign list data seperately
+	    server_data_list = json.data;
+	    data_page_length = json.data.total_page;
+	    
+	})
+	.fail(function(jqXHR, textStatus, errorThrown) {
+	    console.log("HTTP Request Failed",jqXHR);
+	})
+	.always(function() {
+		console.log('get list data request made')
 	});
 
 
@@ -1293,7 +1313,6 @@ window.addEventListener('load', init, false);
 		            added_data = json;
 		            // add new data to existing server data locally
 		            server_data.push(added_data);
-		            // server_data_list.push(added_data);
 					
 					// RECREATE ISLAND
 					createIsland(0, true);
@@ -1382,7 +1401,7 @@ window.addEventListener('load', init, false);
 	// Show List Archive 
 	$('.menu_list').click(function() {
 		// populate list view
-		populateList();
+		populateList(server_data_list);
 
 		controls.enabled = false;
 
@@ -1454,7 +1473,7 @@ window.addEventListener('load', init, false);
 
 		if (is_debugging) {
 
-            populateList();
+            populateList(server_data_list);
 
             if (server_data_list.length == 0) {
             	$('.no_results').show()
@@ -1478,7 +1497,7 @@ window.addEventListener('load', init, false);
 	            // add new data to existing server data for list
 	            server_data_list = json.data;
 
-	            populateList();
+	            populateList(server_data_list);
 
 	            if (server_data_list.length == 0) {
 	            	$('.no_results').show()
@@ -1562,16 +1581,19 @@ window.addEventListener('load', init, false);
 	// POPULATE LIST
 	var wavesurfers = []
 
-	function populateList() {
+	function populateList(datatouse) {
 		
 		wavesurfers = []	
 
-		$('.list_ui .text_wrap ul').empty();
+		if (datatouse == server_data_list) {
+			$('.list_ui .text_wrap ul').empty();	
+		}
+		
 
 
-		for (var i = 0; i < server_data_list.length; i++) {
+		for (var i = 0; i < datatouse.length; i++) {
 
-			var data_item_date = server_data_list[i].added_date;
+			var data_item_date = datatouse[i].added_date;
 			var data_item_location = '';
 
 			if (is_debugging) {
@@ -1594,17 +1616,17 @@ window.addEventListener('load', init, false);
 
 			function buildAddress2() {
 
-				if (server_data_list[i].location.sublocality_level_2.length > 0) {
-					data_item_location += server_data_list[i].location.sublocality_level_2 + ', ';
+				if (datatouse[i].location.sublocality_level_2.length > 0) {
+					data_item_location += datatouse[i].location.sublocality_level_2 + ', ';
 				}
-				if (server_data_list[i].location.sublocality_level_1.length > 0) {
-					data_item_location += server_data_list[i].location.sublocality_level_1 + ', ';
+				if (datatouse[i].location.sublocality_level_1.length > 0) {
+					data_item_location += datatouse[i].location.sublocality_level_1 + ', ';
 				} 
-				if (server_data_list[i].location.city.length > 0) {
-					data_item_location += server_data_list[i].location.city + ', ';
+				if (datatouse[i].location.city.length > 0) {
+					data_item_location += datatouse[i].location.city + ', ';
 				} 
-				if (server_data_list[i].location.country.length > 0) {
-					data_item_location += server_data_list[i].location.country;
+				if (datatouse[i].location.country.length > 0) {
+					data_item_location += datatouse[i].location.country;
 				} 
 			}
 			buildAddress2()
@@ -1612,7 +1634,7 @@ window.addEventListener('load', init, false);
 
 			$('.list_ui .text_wrap ul').append('\
 				<li>\
-					<span id="archive_id_sound_'+i+'" class="archive_sound" data-audio="'+server_data_list[i].mediafname+'" data-id="'+server_data_list[i].thenum+'" data-date="'+data_item_date+'" data-location="'+data_item_location+'"><img src="img/icn_wave.svg"></span>\
+					<span id="archive_id_sound_'+i+'" class="archive_sound" data-audio="'+datatouse[i].mediafname+'" data-id="'+datatouse[i].thenum+'" data-date="'+data_item_date+'" data-location="'+data_item_location+'"><img src="img/icn_wave.svg"></span>\
 				</li></\
 			');
 
@@ -1623,12 +1645,12 @@ window.addEventListener('load', init, false);
 			    waveColor: '#717171',
 			    progressColor: '#717171',
 			    responsive: true,
-			}).load(domain+'/musicfile/'+server_data_list[i].mediafname);
-			// if (is_debugging) {
-			// 	wavesurfers[i].load(domain+'sound/'+server_data_list[i].mediafname);
-			// } else {
-			// 	wavesurfers[i].load(domain+'/musicfile/'+server_data_list[i].mediafname);
-			// }
+			});
+			if (is_debugging) {
+				wavesurfers[i].load(domain+'sound/'+datatouse[i].mediafname);
+			} else {
+				wavesurfers[i].load(domain+'/musicfile/'+datatouse[i].mediafname);
+			}
 			
 
 			// make autocomplete for search
@@ -1649,6 +1671,40 @@ window.addEventListener('load', init, false);
 		}
 
 	};
+
+	function getNextPageData() {
+
+		data_page_current += 1;
+
+		// get first page of data for list view
+		$.ajax({
+		  method: "GET",
+		  url: domain+"/music?action=pagination&page_size=5&page_num="+data_page_current,
+		  crossDomain: true
+		}).done(function(json, textStatus, jqXHR) {
+		    // print the output from the endpoint
+		    console.log('get next page data:', json.data.data);
+
+		    // assign list data seperately
+		    next_page_data = json.data;
+
+		    populateList(next_page_data)
+
+		    if ( (data_page_current + 1) == data_page_length ) {
+		    	$('.list_load_more').hide();
+		    }
+		    
+		})
+		.fail(function(jqXHR, textStatus, errorThrown) {
+		    console.log("HTTP Request Failed",jqXHR);
+		})
+		.always(function() {
+			console.log('get list data request made')
+		});
+
+
+
+	}
 
 
 	// MOON PIXI FUNCTION
