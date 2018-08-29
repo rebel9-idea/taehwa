@@ -17,7 +17,7 @@ mongohost = 'localhost'
 
 theclient = pymongo.MongoClient('mongodb://' + mongo_u + ':' + mongo_p + '@' + mongohost + '/taehwa_online')
 #theclient = pymongo.MongoClient('mongodb://localhost:27017')
-thedb = theclient['taehwa_db']
+thedb = theclient['taehwa_online']
 thecollection = thedb['taehwa_online']
 app = Flask(__name__, static_folder='media')
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
