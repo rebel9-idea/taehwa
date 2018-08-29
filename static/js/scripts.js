@@ -937,8 +937,9 @@ window.addEventListener('load', init, false);
 		navigator.mediaDevices.getUserMedia({ audio: true, video:false }).then(function(stream) {
 			console.log("getUserMedia() success, stream created, initializing WebAudioRecorder...");
 
+			$("#recordButton").text('Loading...');
 			// open Tone.js mic
-			mic.open();
+			//mic.open();
 			/*
 				create an audio context after getUserMedia is called
 				sampleRate might change after getUserMedia is called, like it does on macOS when recording through AirPods
@@ -976,6 +977,7 @@ window.addEventListener('load', init, false);
 				recorder.startRecording();
 				console.log("Recording started");
 				isRecording = true;
+				$("#recordButton").text('Recording...');
 			
 				// stop recording after 3 seconds
 				setTimeout(function(){ 
@@ -1001,7 +1003,7 @@ window.addEventListener('load', init, false);
 
 			// empty recording list
 			$('#recordingsList').empty();
-			$("#recordButton").text('Recording...');
+			
 			$('#submitButton').hide();
 			$('#recordingsList').hide();
 
