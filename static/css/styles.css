@@ -207,6 +207,7 @@ ul, li {
 	height: 200px;
 	background-color: transparent;
 	border-bottom: 1px solid #717171;
+	display: none;
 }
 
 #controls {
