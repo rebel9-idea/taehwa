@@ -83,7 +83,7 @@ def musicupload():
     #average_vol = request.args['average_vol']
     themp3file = request.json['mp3file']
     fname = hashlib.md5((hashsalt+str(time.time())).encode('utf-8')).hexdigest() + '.mp3'
-    with open('/home/project9/summon/media/ + fname, 'wb') as mFile:
+    with open('/home/project9/summon/media/' + fname, 'wb') as mFile:
         bytesmp3 = base64.b64decode(themp3file)
         mFile.write(bytesmp3)
     colcount = thecollection.count()
