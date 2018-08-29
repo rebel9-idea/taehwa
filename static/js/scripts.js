@@ -43,6 +43,9 @@ var ripple_rate = 200;
 var blob_time = performance.now() * 0.0002;
 var custom_blob_time;
 
+var land_opacity = 0.2;
+var sea_opacity = 0.15;
+
 var onMoon = true;
 var onRecordUI = false;	
 var isRecording = false;
@@ -308,7 +311,7 @@ Land = function(land_index){
 		color:0xffffff,
 		wireframe:false,
 		transparent:true,
-		opacity:0.013,
+		opacity:land_opacity,
 	});
 
 
@@ -385,7 +388,7 @@ Sea = function(){
 	var mat = new THREE.MeshBasicMaterial({
 		color:0xffffff,
 		transparent:true,
-		opacity:0.15,
+		opacity:sea_opacity,
 		wireframe:true
 	});
 	this.mesh = new THREE.Mesh(sphere_geom, mat);
@@ -694,7 +697,7 @@ function findIntersections(mouseP) {
 			if ( INTERSECTED ) {
 				console.log('[R1]', INTERSECTED)
 				INTERSECTED.material.color = {r: 1, g: 1, b: 1}
-				INTERSECTED.material.opacity = 0.013;	
+				INTERSECTED.material.opacity = land_opacity;	
 				reflection.mesh.material.opacity = 0.1;	
 				reflection.mesh.material.color = {r: 1, g: 1, b: 1}
 				// keep latest data always highlighted
@@ -737,7 +740,7 @@ function findIntersections(mouseP) {
 		if ( INTERSECTED ) {
 			console.log('[R3]', INTERSECTED)
 			INTERSECTED.material.color = {r: 1, g: 1, b: 1};
-			INTERSECTED.material.opacity = 0.013;	
+			INTERSECTED.material.opacity = land_opacity;	
 			reflection.mesh.material.opacity = 0.1;	
 			reflection.mesh.material.color = {r: 1, g: 1, b: 1}
 			// keep latest data always highlighted
