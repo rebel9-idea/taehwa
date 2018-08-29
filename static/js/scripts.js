@@ -1657,7 +1657,7 @@ window.addEventListener('load', init, false);
 	};
 
 
-	MOON PIXI FUNCTION
+	// MOON PIXI FUNCTION
 
 	(function() {
 	  
