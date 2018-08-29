@@ -259,7 +259,7 @@ ul, li {
 }
 .list_ui .text_wrap {
     overflow-y: scroll;
-    height: calc(100% - 60px);
+    height: calc(100% - 124px);
     padding:0;
 }
 .list_ui .list_tooltip {

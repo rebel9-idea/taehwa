@@ -59,6 +59,8 @@ var is_daytime = false;
 
 // GET DATA FROM SERVER
 function getData() {
+
+	// get all data
 	$.ajax({
 	  method: "GET",
 	  url: domain+"/music",
@@ -103,6 +105,8 @@ function getData() {
 	.always(function() {
 		console.log('getData() request made')
 	});
+
+
 }
 
 
