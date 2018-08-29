@@ -1046,7 +1046,7 @@ window.addEventListener('load', init, false);
 
 		$('#live_wave').hide();
 
-		$("#recordButton").text('Encoding Audio. Please Wait...');
+		$(".record_ui .text_wrap p").text('Encoding Audio. Please Wait...');
 		// $('#recordingsList').html('');
 	}
 
