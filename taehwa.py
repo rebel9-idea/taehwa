@@ -156,21 +156,34 @@ def datesearch():
 
 @app.route('/music')
 def geteverything():
-    data = []
-    colcount = thecollection.count()
-    if colcount > 0:
-        lastrec = thecollection.find().skip(colcount-1)[0]
-        thenum = str(int(lastrec['thenum']) + 1)
-    else:
-        thenum = 1
+    if 'action' in request.args:
+        action = request.args['action']
+        if action == 'get_all':
+            data = []
+            colcount = thecollection.count()
+            if colcount > 0:
+                lastrec = thecollection.find().skip(colcount-1)[0]
+                thenum = str(int(lastrec['thenum']) + 1)
+            else:
+                thenum = 1
 
-    for k in thecollection.find():
-        k["_id"] = str(k['_id'])
-        k['added_date'] = k['added_date'].strftime("%Y%m%d%H%M")
-        k['thenum'] = leadingzeros(thenum, k['thenum'])
-        data.append(k)
+            for k in thecollection.find():
+                k["_id"] = str(k['_id'])
+                k['added_date'] = k['added_date'].strftime("%Y%m%d%H%M")
+                k['thenum'] = leadingzeros(thenum, k['thenum'])
+                data.append(k)
 
-    return resp(200, {'data': data})
+            return resp(200, {'data': data})
+        elif action == 'pagination':
+            if 'page_size' in request.args:
+                page_size = request.args['page_size']
+            else:
+                page_size = 10
+            if 'page_num' in request.args:
+                page_num = request.args['page_num']
+            else:
+                page_num = 1
+            return resp(200, {'data': pagination(page_size, page_num)})
 
 @app.route('/musicfile/<path:path>')
 def servemusicfiles(path):
