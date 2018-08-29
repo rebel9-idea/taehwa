@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, Response, send_from_directory
+import math
 import base64
 import hashlib
 import time
@@ -30,6 +31,7 @@ def pagination(page_size=10, page_num=1, get_all=False):
     cursor = thecollection.find().skip((page_num-1)*page_size).limit(page_size)
     totalcnt = len(list(thecollection.find()))
     for onemus in cursor:
+        onemus['_id'] = str(onemus['_id'])
         onemus['added_date'] = onemus['added_date'].strftime('%Y%m%d')
         data.append(onemus)
     final = {
@@ -160,11 +162,11 @@ def geteverything():
         action = request.args['action']
         if action == 'pagination':
             if 'page_size' in request.args:
-                page_size = request.args['page_size']
+                page_size = int(request.args['page_size'])
             else:
                 page_size = 10
             if 'page_num' in request.args:
-                page_num = request.args['page_num']
+                page_num = int(request.args['page_num'])
             else:
                 page_num = 1
             return resp(200, {'data': pagination(page_size, page_num)})
