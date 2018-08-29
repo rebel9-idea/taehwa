@@ -1807,24 +1807,17 @@ window.addEventListener('load', init, false);
 	        ticker.autoStart = options.autoPlay;
 
 	        ticker.add(function( delta ) {
-
 	          
-		          displacementSprite.x += 1.0 * delta ;
-		          displacementSprite.y += 5.0;
-		          
-		          displacementSprite.x += (average_fft / 10) * delta;
-		          displacementSprite.y += (average_fft / 5) * delta;
-		          displacementSprite.rotation.x += (average_fft / 10);          
-		          	
-		          //console.log('displacementx', displacementSprite.x)
-		          
-		          if (!isRecording) {
-		          	
-		          	renderer.render( stage );
-
-	          	  }
+	          // displacementSprite.x += 1.0 * delta ;
+	          // displacementSprite.y += 5.0;
 	          
-
+	          // displacementSprite.x += (average_fft / 10) * delta;
+	          // displacementSprite.y += (average_fft / 5) * delta;
+	          // displacementSprite.rotation.x += (average_fft / 10);          
+	          	
+	          // //console.log('displacementx', displacementSprite.x)
+	          		
+	          // renderer.render( stage );
 
 	        });
 
@@ -1835,9 +1828,7 @@ window.addEventListener('load', init, false);
 	          render.autoStart = true;
 
 	          render.add(function( delta ) {
-	          	if (!isRecording) {
-	            	renderer.render( stage );
-	            }
+	            renderer.render( stage );
 	          });        
 	        
 	      }    
