@@ -878,8 +878,6 @@ window.addEventListener('load', init, false);
 			getUserLocation();
 			console.log("getUserMedia() success, stream created, initializing WebAudioRecorder...");
 
-			// open Tone.js mic
-			mic.open();
 
 			getUserMediaState = 'open';
 
@@ -939,7 +937,8 @@ window.addEventListener('load', init, false);
 		navigator.mediaDevices.getUserMedia({ audio: true, video:false }).then(function(stream) {
 			console.log("getUserMedia() success, stream created, initializing WebAudioRecorder...");
 
-
+			// open Tone.js mic
+			mic.open();
 			/*
 				create an audio context after getUserMedia is called
 				sampleRate might change after getUserMedia is called, like it does on macOS when recording through AirPods
