@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>TEAF 2018 - Web</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,  shrink-to-fit=no">
+	<link rel="stylesheet" href="css/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>	
+
+	<div class="menu">
+		<ul>
+			<li class="menu_about">ABOUT</li>
+			<li class="menu_list">LIST VIEW</li>
+		</ul>
+	</div>
+
+	<div class="vignette"></div>
+	<div class="vignette2"></div>
+
+	<div class="splash">
+		<div class="loading_message">LOADING</div>
+
+		<div class="splash_ui base_popup">
+
+			<div class="text_wrap">
+				This site requires the use of your sound input and location. Your browser will request to allow the use of your device's microphone and location.
+				<br>
+			</div>
+			<div class="start_intro base_btn">CLICK HERE ALLOW ACCESS</div>
+		</div>
+	</div>
+
+	<div id="world"></div>
+
+	<div class="intro_ui base_popup">
+
+		<div class="text_wrap">
+			<p>This project is an <span>exploration</span> of sound lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id mi at diam cursus viverra phasellus tincidunt hendrerit nisl, non pulvinar est fermentum at.<br><br>
+			You can record a 3-second audio snippet which will be added to the temple of sound.
+			<br>
+		</div>
+		<div class="start_rec base_btn disabled">BEGIN</div>
+	</div>
+
+	<div class="about_ui base_popup">
+
+		<div class="header_about base_header header_with_btn">
+			<span>ABOUT</span>
+			<div class="header_btn close_about">CLOSE</div>
+		</div>
+
+		<div class="text_wrap">
+			<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nibh odio, pharetra sed risus in, lobortis interdum sem. Ut quam lectus, mattis at mi sed, accumsan egestas urna. Integer placerat mauris nisl, in pellentesque turpis molestie ornare. In convallis laoreet est vitae placerat. In neque odio, porta nec dolor ac, fermentum suscipit nunc. Praesent blandit diam sit amet enim mollis dignissim. Suspendisse quis rutrum diam. Proin vitae facilisis velit. Nullam vehicula lacinia quam et mollis. Proin mollis consequat dui, nec ornare tellus congue at.
+			<br><br>
+			Nulla neque nunc, consectetur at nibh at, egestas rhoncus est. Praesent egestas ultricies lacus aliquam faucibus. Vestibulum non ex rutrum, molestie magna nec, commodo est. Fusce dui nisl, interdum sed nibh eget, molestie mollis risus. Curabitur eget est a sem porta blandit ac non dui. Vivamus sagittis nisi ut est tincidunt, ut suscipit lacus blandit. Mauris metus diam, ultricies sit amet lectus a, auctor rutrum elit. Ut venenatis eleifend dapibus. Aliquam viverra luctus metus eget tincidunt. Aenean finibus fermentum dui, vitae finibus urna. Sed tincidunt porta massa in viverra. Cras ullamcorper consectetur ligula. Aenean congue purus sit amet mattis pulvinar. Donec congue diam vel interdum convallis.
+			</p>
+		</div>
+	</div>
+
+	<div class="list_ui full_popup list_grid">
+		<div class="header_about base_header header_with_btn">
+			<span>LIST VIEW</span>
+			<div class="header_btn close_list">CLOSE</div>
+			<div class="search_list">
+				<div class="search_dropdown">
+					<div class="search_set"><span>City<img src="img/icn_arrowdown.svg"></span></div>
+					<ul>
+						<li class="search_li_city" data-id="city">Search by City</li>
+						<li class="search_li_date" data-id="date">Search by Date</li>
+					</ul>
+				</div>
+				<input id="search_input" type="text" placeholder="Example: Seoul">
+				<div class="header_btn btn_search">SEARCH</div>
+			</div>
+		</div>
+
+		<div class="text_wrap">
+			<ul>
+
+				<!-- <li>
+					<span class="archi_id"></span>
+					<span class="archi_date"></span>
+					<span class="archi_location"></span>
+				</li> -->
+			</ul>
+			<div class="no_results">NO RESULTS.<br>TRY SEARCHING ANOTHER TERM.</div>
+			<div class="list_tooltip">
+				<span class="archive_id"></span>
+				<span class="archive_date"></span>
+				<span class="archive_location"></span>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="record_ui base_popup">	
+		<canvas id="live_wave"></canvas>
+		<div class="text_wrap">
+			<p>Press the <strong>RECORD</strong> button,<br>
+			to start recording a 3-second audio snippet.</p>
+		</div>
+		<ul id="recordingsList"></ul>
+		<div id="controls">
+			<div id="recordButton" class="base_btn">Record</div>
+			<div id="stopButton" disabled>Stop</div>
+			<div id="submitButton" class="base_btn">Submit</div>
+		</div>
+
+	</div>
+
+	<div class="pixi_wrapper">
+		<div class="content">
+			<div class="slide-wrapper">
+				<div class="slide-item">
+					<img src="img/moon_far.jpg" class="slide-item__image">
+				</div>		
+			</div>
+		</div>
+	</div>
+
+	<div id="pixi_canvas_wrap">
+	</div>
+
+	<script src="js/data.js"></script>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/dependencies.js"></script>
+	<script src="js/Reflector.js"></script>
+	<script src="js/perlin.js"></script>
+	<script src="js/scripts.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9nTLdK49Vw8GcPFG1Ex_3gxL5gi_m6FI&callback=initMap&language=en"></script>
+
+</body>
+</html>
