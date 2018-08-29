@@ -393,6 +393,16 @@ ul, li {
 
 /* PIXI MOON **/
 
+#pixi_canvas_wrap {
+	position: fixed;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	overflow: hidden;
+}
+
 .pixi_canvas {
 	display: block;
 	position: absolute;
