@@ -977,6 +977,7 @@ window.addEventListener('load', init, false);
 				console.log("Recording started");
 				isRecording = true;
 				$("#recordButton").text('Recording...');
+				$('#live_wave').show();
 
 				// open Tone.js mic
 				mic.open();
@@ -1005,11 +1006,10 @@ window.addEventListener('load', init, false);
 
 			// empty recording list
 			$('#recordingsList').empty();
-			
 			$('#submitButton').hide();
 			$('#recordingsList').hide();
 
-			// $('#live_wave').show();
+			
 
 
 
