@@ -27,7 +27,7 @@ if (is_debugging) {
 	server_data_list = main_data;
 
 }else {
-	domain = "http://192.168.0.5:2018";
+	domain = "https://summon.project9.co.kr/";
 }
 
 var data_to_post;
@@ -1000,7 +1000,7 @@ window.addEventListener('load', init, false);
 			// stop recording after 3 seconds
 			setTimeout(function(){ 
 				stopRecording() 
-			}, 3200);
+			}, 5200);
 
 
 
