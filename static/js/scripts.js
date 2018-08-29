@@ -1379,8 +1379,6 @@ window.addEventListener('load', init, false);
 		controls.enabled = true;
 	});
 
-
-	var has_loaded_once = false;
 	// Show List Archive 
 	$('.menu_list').click(function() {
 		// populate list view
@@ -1390,14 +1388,6 @@ window.addEventListener('load', init, false);
 
 		$('.list_ui').fadeIn();
 		viewingList = true;
-
-		if (!has_loaded_once) {
-			for (var i = 0; i < server_data.length; i++) {
-				// wavesurfers[i].drawBuffer();
-			}		
-		}
-
-		has_loaded_once = true;
 
 	})
 
@@ -1627,18 +1617,18 @@ window.addEventListener('load', init, false);
 			');
 
 			
-			// wavesurfers[i] = WaveSurfer.create({
-			//     container: '#archive_id_sound_'+i,
-			//     scrollParent: false,
-			//     waveColor: '#717171',
-			//     progressColor: '#717171',
-			//     responsive: true,
-			// });
-			// if (is_debugging) {
-			// 	wavesurfers[i].load(domain+'sound/'+server_data_list[i].mediafname);
-			// } else {
-			// 	wavesurfers[i].load(domain+'/musicfile/'+server_data_list[i].mediafname);
-			// }
+			wavesurfers[i] = WaveSurfer.create({
+			    container: '#archive_id_sound_'+i,
+			    scrollParent: false,
+			    waveColor: '#717171',
+			    progressColor: '#717171',
+			    responsive: true,
+			});
+			if (is_debugging) {
+				wavesurfers[i].load(domain+'sound/'+server_data_list[i].mediafname);
+			} else {
+				wavesurfers[i].load(domain+'/musicfile/'+server_data_list[i].mediafname);
+			}
 			
 
 			// make autocomplete for search
