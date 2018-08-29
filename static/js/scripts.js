@@ -976,6 +976,11 @@ window.addEventListener('load', init, false);
 				recorder.startRecording();
 				console.log("Recording started");
 				isRecording = true;
+			
+				// stop recording after 3 seconds
+				setTimeout(function(){ 
+					stopRecording() 
+				}, 5200);
 			  }
 			});
 
@@ -991,15 +996,8 @@ window.addEventListener('load', init, false);
 			});
 
 
-			//start the recording process
-			setTimeout(function(){ 
-				recorder.startRecording();
-				console.log("Recording started");
-				// stop recording after 3 seconds
-				setTimeout(function(){ 
-					stopRecording() 
-				}, 5200);
-			}, 1000);
+
+
 
 			// empty recording list
 			$('#recordingsList').empty();
@@ -1007,7 +1005,7 @@ window.addEventListener('load', init, false);
 			$('#submitButton').hide();
 			$('#recordingsList').hide();
 
-			$('#live_wave').hide();
+			// $('#live_wave').show();
 
 
 
