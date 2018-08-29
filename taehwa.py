@@ -10,172 +10,23 @@ import os
 import serial
 import random
 
-thelist = [b'7', b'8', b'9']
+
 theclient = pymongo.MongoClient('mongodb://localhost:27017')
 thedb = theclient['taehwa_db']
-thecollection = thedb['taehwa_offline']
+thecollection = thedb['taehwa_online']
 app = Flask(__name__, static_folder='media')
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 APP_MEDIA = os.path.join(APP_ROOT, 'media')
 APP_STATIC = os.path.join(APP_ROOT, 'static')
 CORS(app)
 
-def pagination(thecol, page_size, page_num=1, **kwargs):
-    tosort = None
-    if 'sort' in kwargs.keys():
-        if kwargs['sort'] != []:
-            tosort = kwargs['sort']
-    if 'onesearch' in kwargs.keys():
-        search = kwargs['onesearch']
-    else:
-        search = {}
-    if search == {}:
-        if tosort is not None:
-            cursor = thecol.find().skip((page_num-1)*page_size).limit(page_size).sort(tosort)
-            totalcnt = thecol.find().sort(tosort).count(True)
-        else:
-            cursor = thecol.find().skip((page_num - 1) * page_size).limit(page_size)
-            totalcnt = thecol.find().count(True)
-    else:
-        if tosort is not None:
-            cursor = thecol.find({'$and': [{}, search]}).skip((page_num-1)*page_size).limit(page_size).sort(tosort)
-            totalcnt = thecol.find({'$and': [{}, search]}).sort(tosort).count(True)
-        else:
-            cursor = thecol.find({'$and': [{}, search]}).skip((page_num - 1) * page_size).limit(page_size)
-            totalcnt = thecol.find({'$and': [{}, search]}).count(True)
-    if 'multisearch' in kwargs.keys():
-        tosearch = kwargs['multisearch']
-        if tosort is not None:
-            if len(tosearch) == 1:
-                cursor = thecol.find(tosearch[0]).skip((page_num - 1) * page_size).limit(page_size).sort(tosort)
-                totalcnt = thecol.find(tosearch[0]).sort(tosort).count(True)
-            else:
-                cursor = thecol.find({'$and': tosearch}).skip((page_num - 1) * page_size).limit(page_size).sort(tosort)
-                totalcnt = thecol.find({'$and': tosearch}).sort(tosort).count(True)
-        else:
-            cursor = thecol.find({'$and': tosearch}).skip((page_num - 1) * page_size).limit(page_size)
-            totalcnt = thecol.find({'$and': tosearch}).count(True)
-    else:
-        pass
-
-    # Get the data
+def pagination(page_size=10, page_num=1, get_all=False):
     data = []
-    for x in cursor:
-        if 'theid' in x.keys():
-            try:
-                x['theid'] = str(x['theid'])
-            except Exception as e:
-                print e
-        x['_id'] = str(x['_id'])
-        if 'ebook_major_classification_id' in x.keys():
-            x['ebook_major_classification_id'] = str(x['ebook_major_classification_id'])
-            x['ebook_major'] = {
-                'ebook_major_classification_id': str(x['ebook_major_classification_id']),
-                'ebook_major_classification_name': dbmodels.Ebook_maj.collection.find_one({'_id': ObjectId(x['ebook_major_classification_id'])})['name']
-            }
-            x.pop('ebook_major_classification_id')
-        if 'printed_on' in x.keys():
-            x['printed_on'] = x['printed_on'].strftime('%Y%m')
-
-        if 'added_date' in x.keys():
-            x['added_date'] = x['added_date'].strftime('%Y%m%d%H%M')
-        if 'reg_date' in x.keys():
-            x['reg_date'] = x['reg_date'].strftime('%Y%m%d%H%M')
-        if 'question' in x.keys():
-            for anw in x['question']['selected_answers']:
-                anw['added_date'] = anw['added_date'].strftime('%Y%m%d%H%M')
-        if 'connected_media_id' in x.keys():
-            x['connected_media_id'] = str(x['connected_media_id'])
-        if 'selected_answers' in x.keys():
-            for b in x['selected_answers']:
-                b['added_date'] = b['added_date'].strftime('%Y%m%d%H%M')
-            x.pop('_id')
-        if 'connected_thething_id' in x.keys():
-            x['connected_thething_id'] = str(x['connected_thething_id'])
-        if 'connected_business_id' in x.keys():
-            if type(x['connected_business_id']) == type([]):
-                confac = []
-                for num, oneid in enumerate(x['connected_business_id']):
-                    facilname = dbmodels.Businesses({'_id': ObjectId(oneid)})
-                    facilname.reload()
-                    confac.append({
-                        'theid': str(oneid),
-                        'title': facilname['title']
-                    })
-                x['connected_business_id'] = confac
-            else:
-                facilname = dbmodels.Businesses({'_id': ObjectId(x['connected_business_id'])})
-                facilname.reload()
-                x['connected_business_id'] = {
-                    'theid': str(x['connected_business_id']),
-                    'title': facilname['title']
-                }
-        if 'connected_facilities_id' in x.keys():
-            confac = []
-            for num, oneid in enumerate(x['connected_facilities_id']):
-                facilname = dbmodels.Facilities({'_id': oneid})
-                facilname.reload()
-                confac.append({
-                    'theid': str(oneid),
-                    'title': facilname['title']
-                })
-            x['connected_facilities_id'] = confac
-        if 'address' in x.keys():
-            for adr in x['address']:
-                try:
-                    if 'gu_id' in adr.keys():
-                        adr['gu_id'] = str(adr['gu_id'])
-                except Exception as e:
-                    print e
-                    print adr
-        if 'connected_people_id' in x.keys():
-            confac = []
-            for num, oneid in enumerate(x['connected_people_id']):
-                theperson = dbmodels.People({'_id': oneid})
-                theperson.reload()
-                confac.append({
-                    'theid': str(oneid),
-                    'name': theperson['name']
-                })
-            x['connected_people_id'] = confac
-        # if 'images' in x.keys():
-        #     if x['images'] != '':
-        #         for image in x['images']:
-        #             if 'image' in image.keys():
-        #                 if 'thumb' not in image['image'].keys():
-        #                     image['image']['client_thumb'] = image['image']['client_thumb'][:-4] + '_client_thumb' +image['image']['client_thumb'][-4:]
-        #                     image['image']['admin_thumb'] = image['image']['admin_thumb'][:-4] + '_admin_thumb' + image['image']['admin_thumb'][-4:]
-        # if 'thumb_img' in x.keys():
-        #     if x['thumb_img'] != '':
-        #         if 'thumb' not in x['thumb_img'].keys():
-        #             x['thumb_img']['client_thumb'] = x['thumb_img']['client_thumb'][:-4] + '_client_thumb' + x['thumb_img']['client_thumb'][-4:]
-        #             x['thumb_img']['admin_thumb'] = x['thumb_img']['admin_thumb'][:-4] + '_admin_thumb' + x['thumb_img']['admin_thumb'][-4:]
-        if 'people' in x.keys():
-            x['people'] = [dbmodels.People.collection.find_one({'_id': ObjectId(k['theid'])})['name'] for k in x['people']]
-        if 'businesses' in x.keys():
-            x['businesses'] = [dbmodels.Businesses.collection.find_one({'_id': ObjectId(k['theid'])})['title'] for k in x['businesses']]
-        if 'sent_to' in x.keys():
-            x['sent_to'] = [k['date'].strftime('%Y%m%d%H%M') for k in x['sent_to']]
-        if 'type' in x.keys():
-            try:
-                thetype = dbmodels.BusinessType({'_id': ObjectId(x['type'])})
-                thetype.reload()
-            except TypeError:
-                thetype = dbmodels.Facilitytype({"_id": ObjectId(x['type'])})
-                thetype.reload()
-
-            x['type'] = {
-                'type_title': thetype['title'],
-                'type_id': str(thetype['_id'])
-            }
-
-        data.append(x)
-    print data
-    if not data:
-        # No documents left
-        return {'data': None, 'last_id': None}
-    # Since documents are naturally ordered with _id, last document will
-    # have max id.
+    cursor = thecollection.find().skip((page_num-1)*page_size).limit(page_size)
+    totalcnt = len(list(thecollection.find()))
+    for onemus in cursor:
+        onemus['added_date'] = onemus['added_date'].strftime('%Y%m%d')
+        data.append(onemus)
     final = {
         'data': data,
         'total_page': str(int(math.ceil(float(totalcnt)/page_size))),
