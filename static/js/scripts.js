@@ -1807,17 +1807,22 @@ window.addEventListener('load', init, false);
 	        ticker.autoStart = options.autoPlay;
 
 	        ticker.add(function( delta ) {
-	          
-	          displacementSprite.x += 1.0 * delta ;
-	          displacementSprite.y += 5.0;
-	          
-	          displacementSprite.x += (average_fft / 10) * delta;
-	          displacementSprite.y += (average_fft / 5) * delta;
-	          displacementSprite.rotation.x += (average_fft / 10);          
+
+	          if (!isRecording) {
+		          displacementSprite.x += 1.0 * delta ;
+		          displacementSprite.y += 5.0;
+		          
+		          displacementSprite.x += (average_fft / 10) * delta;
+		          displacementSprite.y += (average_fft / 5) * delta;
+		          displacementSprite.rotation.x += (average_fft / 10);          
+		          	
+		          //console.log('displacementx', displacementSprite.x)
+		          		
+		          renderer.render( stage );
 	          	
-	          //console.log('displacementx', displacementSprite.x)
-	          		
-	          renderer.render( stage );
+	          }
+	          
+
 
 	        });
 
