@@ -1808,7 +1808,7 @@ window.addEventListener('load', init, false);
 
 	        ticker.add(function( delta ) {
 
-	          if (!isRecording) {
+	          
 		          displacementSprite.x += 1.0 * delta ;
 		          displacementSprite.y += 5.0;
 		          
@@ -1817,10 +1817,12 @@ window.addEventListener('load', init, false);
 		          displacementSprite.rotation.x += (average_fft / 10);          
 		          	
 		          //console.log('displacementx', displacementSprite.x)
-		          		
-		          renderer.render( stage );
-	          	
-	          }
+		          
+		          if (!isRecording) {
+		          	
+		          	renderer.render( stage );
+
+	          	  }
 	          
 
 
@@ -1833,7 +1835,9 @@ window.addEventListener('load', init, false);
 	          render.autoStart = true;
 
 	          render.add(function( delta ) {
-	            renderer.render( stage );
+	          	if (!isRecording) {
+	            	renderer.render( stage );
+	            }
 	          });        
 	        
 	      }    
