@@ -1364,11 +1364,13 @@ window.addEventListener('load', init, false);
 	// Show About Popup
 	$('.menu_about').click(function() {
 		$('.about_ui').fadeIn();
+		controls.enabled = false;
 	})
 
 	// Close About Popup
 	$('.close_about').click(function(){
 		$('.about_ui').fadeOut();
+		controls.enabled = true;
 	});
 
 
