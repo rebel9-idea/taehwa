@@ -43,7 +43,7 @@ var ripple_rate = 200;
 var blob_time = performance.now() * 0.0002;
 var custom_blob_time;
 
-var land_opacity = 0.5;
+var land_opacity = 0.1;
 var sea_opacity = 0.15;
 
 var onMoon = true;
