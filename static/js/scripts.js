@@ -45,6 +45,8 @@ var custom_blob_time;
 
 var land_opacity = 0.03;
 var sea_opacity = 0.1;
+var reflection_opacity = 0.07;
+var users_land_opacity = 0.3;
 
 var onMoon = true;
 var onRecordUI = false;	
@@ -482,7 +484,7 @@ Reflection = function(){
 	var mat_reflect = new THREE.MeshBasicMaterial({
 		color:0xffffff,
 		transparent:true,
-		opacity:0.1,
+		opacity:reflection_opacity,
 		wireframe:true
 	});
 	this.mesh = new THREE.Mesh(geom_reflect, mat_reflect);
@@ -698,10 +700,10 @@ function findIntersections(mouseP) {
 				console.log('[R1]', INTERSECTED)
 				INTERSECTED.material.color = {r: 1, g: 1, b: 1}
 				INTERSECTED.material.opacity = land_opacity;	
-				reflection.mesh.material.opacity = 0.1;	
+				reflection.mesh.material.opacity = reflection_opacity;	
 				reflection.mesh.material.color = {r: 1, g: 1, b: 1}
 				// keep latest data always highlighted
-				island.mesh.children[island.mesh.children.length-1].children[0].material.opacity = 0.2;
+				island.mesh.children[island.mesh.children.length-1].children[0].material.opacity = users_land_opacity;
 			}
 
 			INTERSECTED = intersects[ 0 ].object;
@@ -715,7 +717,7 @@ function findIntersections(mouseP) {
 				INTERSECTED.material.opacity = 0.05;	
 				reflection.mesh.material.color = {r: 1, g: 1, b: 1}	
 				// keep latest data always highlighted
-				island.mesh.children[island.mesh.children.length-1].children[0].material.opacity = 0.2;
+				island.mesh.children[island.mesh.children.length-1].children[0].material.opacity = users_land_opacity;
 
 
 
@@ -741,10 +743,10 @@ function findIntersections(mouseP) {
 			console.log('[R3]', INTERSECTED)
 			INTERSECTED.material.color = {r: 1, g: 1, b: 1};
 			INTERSECTED.material.opacity = land_opacity;	
-			reflection.mesh.material.opacity = 0.1;	
+			reflection.mesh.material.opacity = reflection_opacity;	
 			reflection.mesh.material.color = {r: 1, g: 1, b: 1}
 			// keep latest data always highlighted
-			island.mesh.children[island.mesh.children.length-1].children[0].material.opacity = 0.2;
+			island.mesh.children[island.mesh.children.length-1].children[0].material.opacity = users_land_opacity;
 		} 
 
 		INTERSECTED = null;
