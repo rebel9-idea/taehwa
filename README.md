@@ -16,5 +16,5 @@ git push origin master
 git fetch --all
 git reset --hard origin/master
 
-pm2 reload taehwa
+service apache2 reload
 ```

@@ -10,8 +10,13 @@ import os
 import serial
 import random
 
+mongo_u = 'taehwa'
+mongo_p = 'taehwa18!'
+mongohost = 'localhost'
+# mongohost = '192.168.0.7'
 
-theclient = pymongo.MongoClient('mongodb://localhost:27017')
+theclient = pymongo.MongoClient('mongodb://' + mongo_u + ':' + mongo_p + '@' + mongohost + '/city_rebirth')
+#theclient = pymongo.MongoClient('mongodb://localhost:27017')
 thedb = theclient['taehwa_db']
 thecollection = thedb['taehwa_online']
 app = Flask(__name__, static_folder='media')
