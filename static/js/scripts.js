@@ -906,27 +906,35 @@ window.addEventListener('load', init, false);
 
     function startMP3Recording() {
      console.log('new mp3 method called')
-      new_recorder.start().then(() => {
 
+      $(".record_ui .text_wrap p").text('Loading...');
+	  $('.record_ui #controls').hide();
+	  $('.record_ui #controls').hide();
+	  $('#recordingsList').hide();
+	  $('#recordingsList').html('');
+      
 
+	  // reset fft + average_session
+	  fft_hits = 0;
+	  average_session_fft = 0;
+      
+      setTimeout(function(){ 
+	      new_recorder.start().then(() => {
 
-		$(".record_ui .text_wrap p").text('Recording...');
-		$('.record_ui #controls').hide();
-		$('#recordingsList').hide();
-		$('#recordingsList').html('');
-		$('#live_wave').show();
+			$(".record_ui .text_wrap p").text('Recording...');
 
-		fft_hits = 0;
-		average_session_fft = 0;
-		console.log('fft_hits & average_session_fft should reset',fft_hits, average_session_fft)
+			if (window.orientation == undefined) {
+				$('#live_wave').show();	
+			}
+						
+			setTimeout(function(){ 
+				stopMP3Recording()
+			}, 5500 );
+	      }).catch((e) => {
+	        console.error(e);
+	      });
+      }, 1000 );
 
-
-		setTimeout(function(){ 
-			stopMP3Recording()
-		}, 5500 );
-      }).catch((e) => {
-        console.error(e);
-      });
     }
 
     function stopMP3Recording() {
