@@ -678,11 +678,12 @@ function loop(){
 		}
 
 		reflection.moveWaves();
+		renderer.render(scene, camera);
 	}
 
 	
 		
-	renderer.render(scene, camera);
+	
 	
 	
 	requestAnimationFrame(loop);	
