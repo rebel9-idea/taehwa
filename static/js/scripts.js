@@ -907,8 +907,9 @@ window.addEventListener('load', init, false);
 
 
 
-		$(".record_ui .text_wrap p").text('Loading...');
+		$(".record_ui .text_wrap p").text('Recording...');
 		$('.record_ui #controls').hide();
+		$('#recordingsList').hide();
 		$('#recordingsList').html('');
 
 
@@ -919,7 +920,7 @@ window.addEventListener('load', init, false);
 
 		setTimeout(function(){ 
 			stopMP3Recording()
-		}, 5200 );
+		}, 5500 );
       }).catch((e) => {
         console.error(e);
       });
@@ -1173,6 +1174,7 @@ window.addEventListener('load', init, false);
 		// li.appendChild(link);
 
 		//add the li element to the ordered list
+		$('#recordingsList').show();
 		$('#recordingsList').html(li);
 		$("#recordButton").text('Re-Record');
 		$(".record_ui .text_wrap p").html('You can re-record the snippet if you wish.<br>Click on <strong>SUBMIT</strong> to continue.');
