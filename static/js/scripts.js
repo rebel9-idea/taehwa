@@ -115,7 +115,7 @@ function getData() {
 	    console.log('get list data:', json.data);
 
 	    // assign list data seperately
-	    server_data_list = json.data;
+	    server_data_list = json.data.data;
 	    data_page_length = json.data.total_page;
 	    
 	})

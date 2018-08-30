@@ -287,7 +287,9 @@ ul, li {
     text-align: left;
     font-size: 11px;
 }
-
+.list_load_more {
+    padding: 20px 30px;
+}
 
 .header_about .search_list {
     padding: 0;
