@@ -610,7 +610,7 @@ function createMirror() {
 function playApollo() {
 	// play recording
 	apollo_bgm = new Audio('sound/apollo.mp3');
-	apollo_bgm.volume = 0.2;
+	apollo_bgm.volume = 0.15;
 	apollo_bgm.addEventListener('ended', function() {
 	    this.currentTime = 0;
 	    this.play();
@@ -623,21 +623,23 @@ function fadeApollo(inout) {
 
 	console.log(inout)
 	if (inout == "out"){
-	    fadeAudioInterval = setInterval(function(){
-	        apollo_bgm.volume = (parseFloat(apollo_bgm.volume) - 0.2).toFixed(1);
+	    apollo_bgm.volume = 0;
+	    // fadeAudioInterval = setInterval(function(){
+	    //     apollo_bgm.volume = (parseFloat(apollo_bgm.volume) - 0.2).toFixed(1);
 
-	        if (apollo_bgm.volume == 0) {
-	        	clearInterval(fadeAudioInterval)
-	        }
-	    }, 100);		
+	    //     if (apollo_bgm.volume == 0) {
+	    //     	clearInterval(fadeAudioInterval)
+	    //     }
+	    // }, 100);		
 	} else {
-	    fadeAudioInterval = setInterval(function(){
-	        apollo_bgm.volume = (parseFloat(apollo_bgm.volume) + 0.2).toFixed(1);
+	    apollo_bgm.volume = 0.15;
+	    // fadeAudioInterval = setInterval(function(){
+	    //     apollo_bgm.volume = (parseFloat(apollo_bgm.volume) + 0.2).toFixed(1);
 
-	        if (apollo_bgm.volume == 1) {
-	        	clearInterval(fadeAudioInterval)
-	        }
-	    }, 100);		
+	    //     if (apollo_bgm.volume == 1) {
+	    //     	clearInterval(fadeAudioInterval)
+	    //     }
+	    // }, 100);		
 	}
 
 }
@@ -900,6 +902,7 @@ window.addEventListener('load', init, false);
 
 
     function startMP3Recording() {
+     console.log('new mp3 method called')
       new_recorder.start().then(() => {
 		setTimeout(function(){ 
 			stopMP3Recording()
