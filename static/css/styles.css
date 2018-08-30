@@ -60,6 +60,7 @@ ul, li {
 
 .stats_ui {
 	opacity: 0.5;
+	display: none;
 }
 
 .no_ios_chrome {
