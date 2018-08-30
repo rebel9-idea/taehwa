@@ -649,7 +649,7 @@ function loop(){
 
 
 
-	if (!onMoon && !onRecordUI && !viewingList && !isRecording) {
+	if (viewingBlob) {
 		blob_anim()	
 
 		if (window.orientation == undefined) {
@@ -684,9 +684,9 @@ function loop(){
 		
 	renderer.render(scene, camera);
 	
-	if (viewingBlob) {
-		requestAnimationFrame(loop);	
-	}
+	
+	requestAnimationFrame(loop);	
+
 	
 	
 
