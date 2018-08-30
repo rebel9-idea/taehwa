@@ -112,7 +112,7 @@ function getData() {
 	  crossDomain: true
 	}).done(function(json, textStatus, jqXHR) {
 	    // print the output from the endpoint
-	    console.log('get list data:', json.data.data);
+	    console.log('get list data:', json.data);
 
 	    // assign list data seperately
 	    server_data_list = json.data;
