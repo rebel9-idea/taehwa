@@ -1960,7 +1960,7 @@ window.addEventListener('load', init, false);
 
 	        ticker.add(function( delta ) {
 	          
-	          if (!isRecording) {
+	          if (!isRecording && window.orientation == undefined) {
 		          displacementSprite.x += 1.0 * delta ;
 		          displacementSprite.y += 5.0;
 		          
