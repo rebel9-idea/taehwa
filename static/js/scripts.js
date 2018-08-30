@@ -1640,19 +1640,21 @@ window.addEventListener('load', init, false);
 				</li></\
 			');
 
-			
-			wavesurfers[i] = WaveSurfer.create({
-			    container: '#archive_id_sound_'+datatouse[i].thenum,
-			    scrollParent: false,
-			    waveColor: '#717171',
-			    progressColor: '#717171',
-			    responsive: true,
-			});
-			if (is_debugging) {
-				wavesurfers[i].load(domain+'sound/'+datatouse[i].mediafname);
-			} else {
-				wavesurfers[i].load(domain+'/musicfile/'+datatouse[i].mediafname);
+			if (!is_safari) {
+				wavesurfers[i] = WaveSurfer.create({
+				    container: '#archive_id_sound_'+datatouse[i].thenum,
+				    scrollParent: false,
+				    waveColor: '#717171',
+				    progressColor: '#717171',
+				    responsive: true,
+				});
+				if (is_debugging) {
+					wavesurfers[i].load(domain+'sound/'+datatouse[i].mediafname);
+				} else {
+					wavesurfers[i].load(domain+'/musicfile/'+datatouse[i].mediafname);
+				}				
 			}
+
 			
 
 			// make autocomplete for search
