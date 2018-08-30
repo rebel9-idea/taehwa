@@ -892,7 +892,7 @@ window.addEventListener('load', init, false);
 	//add events to those 2 buttons
 	$("#recordButton").click(function() {
 		startMP3Recording();
-		mic.open();
+		// mic.open();
 	})
 	$("#stopButton").click(function() {
 		stopRecording();
