@@ -694,7 +694,7 @@ function loop(){
 	// }
 	
 	camera.lookAt ( 0,0,0 );
-	stats.update();
+	//stats.update();
 
 
 	// if mic is open 
