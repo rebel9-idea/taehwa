@@ -1880,38 +1880,12 @@ window.addEventListener('load', init, false);
 	      /// ---------------------------        
 	      if ( options.autoPlay === true ) {
 
-	        var ticker = new PIXI.ticker.Ticker();
-
-	        ticker.autoStart = options.autoPlay;
-
-	        ticker.add(function( delta ) {
-	          
-	          if (!isRecording) {
-		          displacementSprite.x += 1.0 * delta ;
-		          displacementSprite.y += 5.0;
-		          
-		          displacementSprite.x += (average_fft / 10) * delta;
-		          displacementSprite.y += (average_fft / 5) * delta;
-		          displacementSprite.rotation.x += (average_fft / 10);          
-		          	
-		          //console.log('displacementx', displacementSprite.x)
-		          		
-		          renderer.render( stage );	          	
-	          }
 
 
 	        });
 
 	      }  else {
 
-	          var render = new PIXI.ticker.Ticker();
-
-	          render.autoStart = true;
-
-	          render.add(function( delta ) {
-	            renderer.render( stage );
-	          });        
-	        
 	      }    
 	      
 
