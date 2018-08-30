@@ -648,7 +648,7 @@ function loop(){
 
 
 
-	if (!onMoon && !onRecordUI && !viewingList) {
+	if (!onMoon && !onRecordUI && !viewingList && !isRecording) {
 		blob_anim()	
 
 		if (window.orientation == undefined) {
@@ -699,7 +699,7 @@ function loop(){
 
 	// if mic is open 
 	//draw the waveform
-	if (getUserMediaState == 'open' ) {
+	if (getUserMediaState == 'open'  ) {
 		var canvasWidth = context.canvas.width;
 		var canvasHeight = context.canvas.height;
 		//draw the waveform
@@ -920,7 +920,7 @@ window.addEventListener('load', init, false);
       
       setTimeout(function(){ 
 	      new_recorder.start().then(() => {
-
+	      	isRecording = true;
 			$(".record_ui .text_wrap p").text('Recording...');
 
 			if (window.orientation == undefined) {
@@ -1956,16 +1956,19 @@ window.addEventListener('load', init, false);
 
 	        ticker.add(function( delta ) {
 	          
-	          displacementSprite.x += 1.0 * delta ;
-	          displacementSprite.y += 5.0;
-	          
-	          displacementSprite.x += (average_fft / 10) * delta;
-	          displacementSprite.y += (average_fft / 5) * delta;
-	          displacementSprite.rotation.x += (average_fft / 10);          
-	          	
-	          //console.log('displacementx', displacementSprite.x)
-	          		
-	          renderer.render( stage );
+	          if (!isRecording) {
+		          displacementSprite.x += 1.0 * delta ;
+		          displacementSprite.y += 5.0;
+		          
+		          displacementSprite.x += (average_fft / 10) * delta;
+		          displacementSprite.y += (average_fft / 5) * delta;
+		          displacementSprite.rotation.x += (average_fft / 10);          
+		          	
+		          //console.log('displacementx', displacementSprite.x)
+		          		
+		          renderer.render( stage );	          	
+	          }
+
 
 	        });
 
