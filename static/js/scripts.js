@@ -1551,7 +1551,7 @@ window.addEventListener('load', init, false);
 
 				$('.list_ui').addClass('hovered');
 				$('.archive_id').html('Echo '+data_id+'.')
-				$('.archive_date').html(data_date+'HRS.')
+				$('.archive_date').html(data_date+'.')
 				$('.archive_location').html(data_location)
 		    },
 
@@ -1605,8 +1605,8 @@ window.addEventListener('load', init, false);
 					var str = data_item_date.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
 					    chars = str.split('');
 
-					chars.splice(-4, 0, '. ');
-					str = chars.join('');
+					// chars.splice(-4, 0, '. ');
+					// str = chars.join('');
 					data_item_date = str;
 				}
 				reformatDate()
