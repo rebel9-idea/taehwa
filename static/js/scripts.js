@@ -648,41 +648,41 @@ function loop(){
 
 
 
-	if (!onMoon && !onRecordUI && !viewingList && !isRecording) {
-		blob_anim()	
+	// if (!onMoon && !onRecordUI && !viewingList && !isRecording) {
+	// 	blob_anim()	
 
-		if (window.orientation == undefined) {
-			sea.mesh.rotation.y += 0.003;
-			sea.mesh.rotation.x += 0.003;
-			sea.mesh.rotation.z += 0.003;
+	// 	if (window.orientation == undefined) {
+	// 		sea.mesh.rotation.y += 0.003;
+	// 		sea.mesh.rotation.x += 0.003;
+	// 		sea.mesh.rotation.z += 0.003;
 
-			if (island != undefined) {
-				island.mesh.rotation.y += 0.003;
-				island.mesh.rotation.x += 0.003;
-				island.mesh.rotation.z += 0.003;				
-			}
+	// 		if (island != undefined) {
+	// 			island.mesh.rotation.y += 0.003;
+	// 			island.mesh.rotation.x += 0.003;
+	// 			island.mesh.rotation.z += 0.003;				
+	// 		}
 
 
-			reflection.mesh.rotation.y += 0.005;
-		} else {
-		    sea.mesh.rotation.y += gamma / 50;
-		    sea.mesh.rotation.x += beta / 50;
+	// 		reflection.mesh.rotation.y += 0.005;
+	// 	} else {
+	// 	    sea.mesh.rotation.y += gamma / 50;
+	// 	    sea.mesh.rotation.x += beta / 50;
 
-		    if (island != undefined) {
-				island.mesh.rotation.y += gamma / 50;
-				island.mesh.rotation.x += beta/ 50;
-			}
+	// 	    if (island != undefined) {
+	// 			island.mesh.rotation.y += gamma / 50;
+	// 			island.mesh.rotation.x += beta/ 50;
+	// 		}
 
-			reflection.mesh.rotation.y += 0.003;
-		}
+	// 		reflection.mesh.rotation.y += 0.003;
+	// 	}
 
-		reflection.moveWaves();
-	}
+	// 	reflection.moveWaves();
+	// }
 
 	
 	
-	renderer.render(scene, camera);
-	requestAnimationFrame(loop);
+	// renderer.render(scene, camera);
+	// requestAnimationFrame(loop);
 	
 
 
