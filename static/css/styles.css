@@ -392,7 +392,7 @@ ul, li {
 .archive_sound.wavesurfer_bg {
 	min-height: 40px;
 	background-image: url(../img/wave_default.jpg);
-	background-image: contain;
+	background-size: contain;
 }
 .archive_sound wave {
 	max-height: 60px;
