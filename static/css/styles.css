@@ -289,6 +289,7 @@ ul, li {
 }
 .list_load_more {
     padding: 20px 30px;
+    border-top:1px solid #717171;
 }
 
 .header_about .search_list {
