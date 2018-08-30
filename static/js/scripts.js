@@ -892,7 +892,9 @@ window.addEventListener('load', init, false);
 	//add events to those 2 buttons
 	$("#recordButton").click(function() {
 		startMP3Recording();
-		// mic.open();
+		if (window.orientation == undefined) {
+			mic.open();
+		}
 	})
 	$("#stopButton").click(function() {
 		stopRecording();
@@ -1202,7 +1204,7 @@ window.addEventListener('load', init, false);
 	    if (navigator.geolocation) {
 
 			// START INTRO IF USER ALLOWS LOCATION
-			//loop();
+			loop();
 			if (disable_intro == false ) {
 				intro_anim();	
 			} else {
@@ -1946,16 +1948,16 @@ window.addEventListener('load', init, false);
 
 	        ticker.add(function( delta ) {
 	          
-	          // displacementSprite.x += 1.0 * delta ;
-	          // displacementSprite.y += 5.0;
+	          displacementSprite.x += 1.0 * delta ;
+	          displacementSprite.y += 5.0;
 	          
-	          // displacementSprite.x += (average_fft / 10) * delta;
-	          // displacementSprite.y += (average_fft / 5) * delta;
-	          // displacementSprite.rotation.x += (average_fft / 10);          
+	          displacementSprite.x += (average_fft / 10) * delta;
+	          displacementSprite.y += (average_fft / 5) * delta;
+	          displacementSprite.rotation.x += (average_fft / 10);          
 	          	
-	          // //console.log('displacementx', displacementSprite.x)
+	          //console.log('displacementx', displacementSprite.x)
 	          		
-	          // renderer.render( stage );
+	          renderer.render( stage );
 
 	        });
 
