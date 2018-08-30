@@ -952,7 +952,7 @@ window.addEventListener('load', init, false);
         audio_blob = blob
         // console.log(blob);
         const file = new File(buffer, 'music.mp3', {
-          type: audio_blob.type,
+          type: "audio/mpeg",
           lastModified: Date.now()
         });
 
