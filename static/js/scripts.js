@@ -950,6 +950,7 @@ window.addEventListener('load', init, false);
 
         //console.log(buffer, blob);
         audio_blob = blob
+
         // console.log(blob);
         const file = new File(buffer, 'music.mp3', {
           type: "audio/mpeg",
@@ -957,6 +958,8 @@ window.addEventListener('load', init, false);
         });
 
 		$('#live_wave').hide();
+
+		audio_blob.type = "audio/mpeg";
 
 		$(".record_ui .text_wrap p").text('Encoding Audio. Please Wait...');
 
@@ -1160,7 +1163,7 @@ window.addEventListener('load', init, false);
 
 		// audio data to send to server
 		audio_blob = blob;
-		console.log(audio_blob)
+		// console.log(audio_blob)
 
 		var url = URL.createObjectURL(blob);
 		blob_link = URL.createObjectURL(blob);
