@@ -37,7 +37,7 @@ if (is_debugging) {
 	var server_data_list = main_data;
 
 }else {
-	var domain = "https://summon.project9.co.kr/";
+	var domain = "https://summon.project9.co.kr";
 	var data_page_current = 1;
 	var data_page_length;
 	var next_page_data;
@@ -1960,7 +1960,7 @@ window.addEventListener('load', init, false);
 
 	        ticker.add(function( delta ) {
 	          
-	          if (!isRecording && window.orientation == undefined) {
+	          if (!isRecording) {
 		          displacementSprite.x += 1.0 * delta ;
 		          displacementSprite.y += 5.0;
 		          
