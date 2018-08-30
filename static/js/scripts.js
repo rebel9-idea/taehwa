@@ -1882,7 +1882,7 @@ window.addEventListener('load', init, false);
 
 
 
-	        });
+
 
 	      }  else {
 
