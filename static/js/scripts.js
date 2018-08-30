@@ -1410,6 +1410,11 @@ window.addEventListener('load', init, false);
 		$('.list_ui').fadeIn();
 		viewingList = true;
 
+		if (is_safari) {
+			var that = this;
+			playArchiveSound(that);
+		}
+
 	})
 
 	// Close List View
@@ -1544,6 +1549,7 @@ window.addEventListener('load', init, false);
 		$(document).on({
 		    mouseover: function () {
 				var that = this;
+				console.log(that)
 				$(that).closest('li').addClass('sound_hovered');
 				playArchiveSound(that);
 
@@ -1566,13 +1572,11 @@ window.addEventListener('load', init, false);
 
 	} else {
 
-
-	}
-
 		$(document).on('click','.archive_sound',function(){
 			var that = this;
 			playArchiveSound(that);
 		});
+	}
 
 	$( '.list_ui .text_wrap' ).on( "mousemove", function( event ) {
 	  $( ".list_tooltip" ).css({
