@@ -1686,7 +1686,7 @@ window.addEventListener('load', init, false);
 		    console.log('get next page data:', json.data.data);
 
 		    // assign list data seperately
-		    next_page_data = json.data;
+		    next_page_data = json.data.data;
 
 		    populateList(next_page_data)
 
