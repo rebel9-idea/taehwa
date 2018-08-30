@@ -1583,7 +1583,7 @@ window.addEventListener('load', init, false);
 
 	function populateList(datatouse) {
 		
-		wavesurfers = []	
+		//wavesurfers = []	
 
 		if (datatouse == server_data_list) {
 			$('.list_ui .text_wrap ul').empty();	
@@ -1634,13 +1634,13 @@ window.addEventListener('load', init, false);
 
 			$('.list_ui .text_wrap ul').append('\
 				<li>\
-					<span id="archive_id_sound_'+i+'" class="archive_sound" data-audio="'+datatouse[i].mediafname+'" data-id="'+datatouse[i].thenum+'" data-date="'+data_item_date+'" data-location="'+data_item_location+'"><img src="img/icn_wave.svg"></span>\
+					<span id="archive_id_sound_'+datatouse[i].thenum+'" class="archive_sound" data-audio="'+datatouse[i].mediafname+'" data-id="'+datatouse[i].thenum+'" data-date="'+data_item_date+'" data-location="'+data_item_location+'"><img src="img/icn_wave.svg"></span>\
 				</li></\
 			');
 
 			
 			wavesurfers[i] = WaveSurfer.create({
-			    container: '#archive_id_sound_'+i,
+			    container: '#archive_id_sound_'+datatouse[i].thenum,
 			    scrollParent: false,
 			    waveColor: '#717171',
 			    progressColor: '#717171',
