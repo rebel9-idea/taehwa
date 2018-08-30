@@ -904,6 +904,18 @@ window.addEventListener('load', init, false);
     function startMP3Recording() {
      console.log('new mp3 method called')
       new_recorder.start().then(() => {
+
+
+
+		$(".record_ui .text_wrap p").text('Loading...');
+		$('.record_ui #controls').hide();
+
+
+		fft_hits = 0;
+		average_session_fft = 0;
+		console.log('fft_hits & average_session_fft should reset',fft_hits, average_session_fft)
+
+
 		setTimeout(function(){ 
 			stopMP3Recording()
 		}, 5200 );
@@ -914,13 +926,22 @@ window.addEventListener('load', init, false);
 
     function stopMP3Recording() {
       new_recorder.stop().getMp3().then(([buffer, blob]) => {
+
+		console.log("stopRecording() called");
+		console.log('Recording stopped');
+		isRecording = false;
+
         //console.log(buffer, blob);
         audio_blob = blob
-        console.log(blob);
+        // console.log(blob);
         const file = new File(buffer, 'music.mp3', {
           type: audio_blob.type,
           lastModified: Date.now()
         });
+
+		$('#live_wave').hide();
+
+		$(".record_ui .text_wrap p").text('Encoding Audio. Please Wait...');
 
         // append recorded media here
         createDownloadLink(audio_blob)
