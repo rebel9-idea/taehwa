@@ -1160,6 +1160,8 @@ window.addEventListener('load', init, false);
 		// audio data to send to server
 		// audio_blob = blob;
 		console.log('[r1]',blob)
+		audio_blob = blob.slice(0, blob.size, "audio/mpeg")
+
 		console.log('[r2]',audio_blob)
 
 		var url = URL.createObjectURL(blob);
