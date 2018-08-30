@@ -16,6 +16,8 @@ var fft_hits = 0;
 var average_session_fft = 0;
 
 // GENERAL STUFF
+var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
 var is_debugging = false;
 
 if (is_debugging) {
