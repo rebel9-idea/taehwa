@@ -391,7 +391,7 @@ ul, li {
 }
 .archive_sound.wavesurfer_bg {
 	min-height: 40px;
-	background-image: url(../img/icn_wave.svg);
+	background-image: url(../img/wave_default.jpg);
 	background-image: contain;
 }
 .archive_sound wave {
