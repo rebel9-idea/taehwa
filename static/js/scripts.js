@@ -1537,11 +1537,7 @@ window.addEventListener('load', init, false);
 		} else {
 			var soundArchive = new Audio(domain+'/musicfile/'+thisSound);	
 		}
-		if (customvol == undefined) {
-			soundArchive.volume = customvol;
-		} else {
-			soundArchive.volume = 0.5;	
-		}
+		soundArchive.volume = customvol;
 		
 		soundArchive.play();
 	}
@@ -1555,7 +1551,7 @@ window.addEventListener('load', init, false);
 				var that = this;
 				// console.log(that)
 				$(that).closest('li').addClass('sound_hovered');
-				playArchiveSound(that);
+				playArchiveSound(that, 0.5);
 
 				var data_id = $(this).attr('data-id');
 				var data_date = $(this).attr('data-date');
@@ -1578,7 +1574,7 @@ window.addEventListener('load', init, false);
 
 		$(document).on('click','.archive_sound',function(){
 			var that = this;
-			playArchiveSound(that);
+			playArchiveSound(that, 0.5);
 		});
 	}
 
