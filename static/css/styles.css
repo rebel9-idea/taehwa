@@ -310,6 +310,7 @@ ul, li {
     width: 50%;
     height: 100%;
     float:left;
+    height: 60px;
 }
 .header_about .search_list input:focus {
 	outline-color: #717171;
@@ -328,11 +329,12 @@ ul, li {
     height: 100%;
     float: left;
     position: relative;
+    border-right: 1px solid #717171;
 }
 .search_set {
     height: 100%;
     display: block;
-    border-right: 1px solid #717171;
+    /*border-right: 1px solid #717171;*/
     cursor: pointer;
 }
 .search_set > span {
