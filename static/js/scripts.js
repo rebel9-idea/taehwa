@@ -1704,11 +1704,12 @@ window.addEventListener('load', init, false);
 
 
 
-	}
+	};
 
 	$('.list_load_more').click(function() {
 		getNextPageData();
-	})
+	});
+
 
 
 	// MOON PIXI FUNCTION
