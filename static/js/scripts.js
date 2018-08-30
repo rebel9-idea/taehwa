@@ -65,6 +65,7 @@ var onMoon = true;
 var onRecordUI = false;	
 var isRecording = false;
 var viewingList = false;
+var viewingBlob = false;
 var isIntro = true;
 var is_daytime = false;
 
@@ -680,9 +681,13 @@ function loop(){
 	}
 
 	
+		
+	renderer.render(scene, camera);
 	
-	// renderer.render(scene, camera);
-	// requestAnimationFrame(loop);
+	if (viewingBlob) {
+		requestAnimationFrame(loop);	
+	}
+	
 	
 
 
@@ -1404,6 +1409,7 @@ window.addEventListener('load', init, false);
 					setTimeout(function(){ 
 						$('#pixi_canvas_wrap').fadeOut();
 						onMoon = false;
+						viewingBlob = true;
 
 						$('.record_ui').fadeOut();
 						$('.menu').fadeIn();
