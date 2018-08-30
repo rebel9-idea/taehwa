@@ -1038,123 +1038,119 @@ window.addEventListener('load', init, false);
 
 	}
 
-	function beginRecording() {
+	// function beginRecording() {
 
-		navigator.mediaDevices.getUserMedia({ audio: true, video:false }).then(function(stream) {
-			console.log("getUserMedia() success, stream created, initializing WebAudioRecorder...");
+	// 	navigator.mediaDevices.getUserMedia({ audio: true, video:false }).then(function(stream) {
+	// 		console.log("getUserMedia() success, stream created, initializing WebAudioRecorder...");
 
-			$(".record_ui .text_wrap p").text('Loading...');
-			$('.record_ui #controls').hide();
-			/*
-				create an audio context after getUserMedia is called
-				sampleRate might change after getUserMedia is called, like it does on macOS when recording through AirPods
-				the sampleRate defaults to the one set in your OS for your playback device
+	// 		$(".record_ui .text_wrap p").text('Loading...');
+	// 		$('.record_ui #controls').hide();
+	// 		/*
+	// 			create an audio context after getUserMedia is called
+	// 			sampleRate might change after getUserMedia is called, like it does on macOS when recording through AirPods
+	// 			the sampleRate defaults to the one set in your OS for your playback device
 
-			*/
+	// 		*/
 
-			audioContext = new AudioContext();
+	// 		audioContext = new AudioContext();
 
-			//assign to gumStream for later use
-			gumStream = stream;
+	// 		//assign to gumStream for later use
+	// 		gumStream = stream;
 			
-			/* use the stream */
-			// input = audioContext.createMediaStreamSource(stream);
+	// 		/* use the stream */
+	// 		// input = audioContext.createMediaStreamSource(stream);
 
-			//get the encoding 
-			encodingType = "mp3";
+	// 		//get the encoding 
+	// 		encodingType = "mp3";
 
-			fft_hits = 0;
-			average_session_fft = 0;
-			console.log('fft_hits & average_session_fft should reset',fft_hits, average_session_fft)
+	// 		fft_hits = 0;
+	// 		average_session_fft = 0;
+	// 		console.log('fft_hits & average_session_fft should reset',fft_hits, average_session_fft)
 
-			recorder = new WebAudioRecorder(input, {
-			  workerDir: "js/", // must end with slash
-			  encoding: encodingType,
-			  numChannels:2, //2 is the default, mp3 encoding supports only 2
-			  onEncoderLoading: function(recorder, encoding) {
-			    // show "loading encoder..." display
-			    console.log("Loading "+encoding+" encoder...");
-			  },
-			  onEncoderLoaded: function(recorder, encoding) {
-			    // hide "loading encoder..." display
-			    console.log(encoding+" encoder loaded");
-				//start the recording process
-				recorder.startRecording();
-				console.log("Recording started");
-				isRecording = true;
-				$("#recordButton").text('Recording...');
-				$('#live_wave').show();
+	// 		recorder = new WebAudioRecorder(input, {
+	// 		  workerDir: "js/", // must end with slash
+	// 		  encoding: encodingType,
+	// 		  numChannels:2, //2 is the default, mp3 encoding supports only 2
+	// 		  onEncoderLoading: function(recorder, encoding) {
+	// 		    // show "loading encoder..." display
+	// 		    console.log("Loading "+encoding+" encoder...");
+	// 		  },
+	// 		  onEncoderLoaded: function(recorder, encoding) {
+	// 		    // hide "loading encoder..." display
+	// 		    console.log(encoding+" encoder loaded");
+	// 			//start the recording process
+	// 			recorder.startRecording();
+	// 			console.log("Recording started");
+	// 			isRecording = true;
+	// 			$("#recordButton").text('Recording...');
+	// 			$('#live_wave').show();
 
-				$('.record_ui .text_wrap p').html('RECORDING...')
+	// 			$('.record_ui .text_wrap p').html('RECORDING...')
 				
 
-				// open Tone.js mic
-				mic.open();
+	// 			// open Tone.js mic
+	// 			mic.open();
 			
-				// stop recording after 3 seconds
-				setTimeout(function(){ 
-					stopRecording() 
-				}, 5200);
-			  }
-			});
+	// 			// stop recording after 3 seconds
+	// 			setTimeout(function(){ 
+	// 				stopRecording() 
+	// 			}, 5200);
+	// 		  }
+	// 		});
 
-			recorder.onComplete = function(recorder, blob) { 
-				console.log("Encoding complete");
-				createDownloadLink(blob,recorder.encoding);
-			}
+	// 		recorder.onComplete = function(recorder, blob) { 
+	// 			console.log("Encoding complete");
+	// 			createDownloadLink(blob,recorder.encoding);
+	// 		}
 
-			recorder.setOptions({
-			  timeLimit:120,
-			  encodeAfterRecord:encodeAfterRecord,
-			  mp3: {bitRate: 320}
-			});
-
-
+	// 		recorder.setOptions({
+	// 		  timeLimit:120,
+	// 		  encodeAfterRecord:encodeAfterRecord,
+	// 		  mp3: {bitRate: 320}
+	// 		});
 
 
 
-			// empty recording list
-			$('#recordingsList').empty();
-			$('#submitButton').hide();
-			$('#recordingsList').hide();
+
+
+	// 		// empty recording list
+	// 		$('#recordingsList').empty();
+	// 		$('#submitButton').hide();
+	// 		$('#recordingsList').hide();
 
 			
 
+	// 		$("#stopButton").removeClass('disabled');
+	// 		$("#recordButton").addClass('disabled');
 
 
 
+	// 	}).catch(function(err) {
+	// 	  	//enable the record button if getUSerMedia() fails
+	// 		$("#stopButton").addClass('disabled');
+	// 		$("#recordButton").removeClass('disabled');
 
-			$("#stopButton").removeClass('disabled');
-			$("#recordButton").addClass('disabled');
-
-
-
-		}).catch(function(err) {
-		  	//enable the record button if getUSerMedia() fails
-			$("#stopButton").addClass('disabled');
-			$("#recordButton").removeClass('disabled');
-
-		});
+	// 	});
 		
-	}
+	// }
 
-	function stopRecording() {
-		console.log("stopRecording() called");
+	// function stopRecording() {
+	// 	console.log("stopRecording() called");
 		
-		//stop microphone access
-		gumStream.getAudioTracks()[0].stop();
+	// 	//stop microphone access
+	// 	gumStream.getAudioTracks()[0].stop();
 		
-		//tell the recorder to finish the recording (stop recording + encode the recorded audio)
-		recorder.finishRecording();
+	// 	//tell the recorder to finish the recording (stop recording + encode the recorded audio)
+	// 	recorder.finishRecording();
 
-		console.log('Recording stopped');
-		isRecording = false;
+	// 	console.log('Recording stopped');
+	// 	isRecording = false;
 
-		$('#live_wave').hide();
+	// 	$('#live_wave').hide();
 
-		$(".record_ui .text_wrap p").text('Encoding Audio. Please Wait...');
-		// $('#recordingsList').html('');
-	}
+	// 	$(".record_ui .text_wrap p").text('Encoding Audio. Please Wait...');
+	// 	// $('#recordingsList').html('');
+	// }
 
 
 
@@ -1162,8 +1158,9 @@ window.addEventListener('load', init, false);
 		
 
 		// audio data to send to server
-		audio_blob = blob;
-		// console.log(audio_blob)
+		// audio_blob = blob;
+		console.log('[r1]',blob)
+		console.log('[r2]',audio_blob)
 
 		var url = URL.createObjectURL(blob);
 		blob_link = URL.createObjectURL(blob);
