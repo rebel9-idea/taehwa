@@ -909,6 +909,7 @@ window.addEventListener('load', init, false);
 
 		$(".record_ui .text_wrap p").text('Loading...');
 		$('.record_ui #controls').hide();
+		$('#recordingsList').html('');
 
 
 		fft_hits = 0;
