@@ -1411,8 +1411,8 @@ window.addEventListener('load', init, false);
 		viewingList = true;
 
 		if (is_safari) {
-			var that = this;
-			playArchiveSound(that);
+			var trigger_sound = $('.archive_sound')[0];
+			playArchiveSound(trigger_sound, 0.3);
 		}
 
 	})
@@ -1529,7 +1529,7 @@ window.addEventListener('load', init, false);
 	})
 
 
-	function playArchiveSound(that) {
+	function playArchiveSound(that, customvol) {
 		var thisSound = $(that).attr('data-audio');
 		//console.log(thisSound)
 		if (is_debugging) {
@@ -1537,8 +1537,12 @@ window.addEventListener('load', init, false);
 		} else {
 			var soundArchive = new Audio(domain+'/musicfile/'+thisSound);	
 		}
+		if (customvol == undefined) {
+			soundArchive.volume = customvol;
+		} else {
+			soundArchive.volume = 0.5;	
+		}
 		
-		soundArchive.volume = 0.5;
 		soundArchive.play();
 	}
 
@@ -1549,7 +1553,7 @@ window.addEventListener('load', init, false);
 		$(document).on({
 		    mouseover: function () {
 				var that = this;
-				console.log(that)
+				// console.log(that)
 				$(that).closest('li').addClass('sound_hovered');
 				playArchiveSound(that);
 
