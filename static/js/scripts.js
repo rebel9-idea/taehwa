@@ -918,9 +918,13 @@ window.addEventListener('load', init, false);
 	  fft_hits = 0;
 	  average_session_fft = 0;
       
+	  // set state to stop all anims
+	  // recording suffers on ios mobile browsers
+      isRecording = true;
+
       setTimeout(function(){ 
 	      new_recorder.start().then(() => {
-	      	isRecording = true;
+	      	
 			$(".record_ui .text_wrap p").text('Recording...');
 
 			if (window.orientation == undefined) {
