@@ -681,8 +681,8 @@ function loop(){
 
 	
 	
-	renderer.render(scene, camera);
-	requestAnimationFrame(loop);
+	// renderer.render(scene, camera);
+	// requestAnimationFrame(loop);
 	
 
 
@@ -699,29 +699,29 @@ function loop(){
 
 	// if mic is open 
 	//draw the waveform
-	// if (getUserMediaState == 'open' && window.orientation == undefined) {
-	// 	var canvasWidth = context.canvas.width;
-	// 	var canvasHeight = context.canvas.height;
-	// 	//draw the waveform
-	// 	context.clearRect(0, 0, canvasWidth, canvasHeight);
-	// 	var values = analyser.getValue();
-	// 	//console.log(values)
+	if (getUserMediaState == 'open' && window.orientation == undefined) {
+		var canvasWidth = context.canvas.width;
+		var canvasHeight = context.canvas.height;
+		//draw the waveform
+		context.clearRect(0, 0, canvasWidth, canvasHeight);
+		var values = analyser.getValue();
+		//console.log(values)
 		
-	// 	context.beginPath();
-	// 	context.lineJoin = "round";
-	// 	context.lineWidth = 1.5;
-	// 	context.strokeStyle = "#717171";
-	// 	context.moveTo(0, (values[0] + 1) / 2 * canvasHeight);
+		context.beginPath();
+		context.lineJoin = "round";
+		context.lineWidth = 1.5;
+		context.strokeStyle = "#717171";
+		context.moveTo(0, (values[0] + 1) / 2 * canvasHeight);
 
 
-	// 	for (var i = 1, len = values.length; i < len; i++){
-	// 		var val = (values[i] + 1) / 2;
-	// 		var x = canvasWidth * (i / (len - 1));
-	// 		var y = val * canvasHeight;
-	// 		context.lineTo(x, y);
-	// 	}
-	// 	context.stroke();
-	// }
+		for (var i = 1, len = values.length; i < len; i++){
+			var val = (values[i] + 1) / 2;
+			var x = canvasWidth * (i / (len - 1));
+			var y = val * canvasHeight;
+			context.lineTo(x, y);
+		}
+		context.stroke();
+	}
 
 }
 
