@@ -14,6 +14,17 @@ var mic;
 var average_fft = 0.1;
 var fft_hits = 0;
 var average_session_fft = 0;
+// audio blob url
+var blob_link;
+var au_gl;
+var audio_blob;
+
+const new_recorder = new MicRecorder({
+  bitRate: 256
+});
+
+
+
 
 // GENERAL STUFF
 var is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
@@ -878,7 +889,7 @@ window.addEventListener('load', init, false);
 
 	//add events to those 2 buttons
 	$("#recordButton").click(function() {
-		beginRecording();
+		startMP3Recording();
 	})
 	$("#stopButton").click(function() {
 		stopRecording();
@@ -886,6 +897,35 @@ window.addEventListener('load', init, false);
 	$("#submitButton").click(function() {
 		submitAudio();
 	})
+
+
+    function startMP3Recording() {
+      new_recorder.start().then(() => {
+		setTimeout(function(){ 
+			stopMP3Recording()
+		}, 5200 );
+      }).catch((e) => {
+        console.error(e);
+      });
+    }
+
+    function stopMP3Recording() {
+      new_recorder.stop().getMp3().then(([buffer, blob]) => {
+        //console.log(buffer, blob);
+        audio_blob = blob
+        console.log(blob);
+        const file = new File(buffer, 'music.mp3', {
+          type: audio_blob.type,
+          lastModified: Date.now()
+        });
+
+        // append recorded media here
+        createDownloadLink(audio_blob)
+
+      }).catch((e) => {
+        console.error(e);
+      });
+    }
 
 	function getUserMedia() {
 
@@ -1072,12 +1112,9 @@ window.addEventListener('load', init, false);
 		// $('#recordingsList').html('');
 	}
 
-	// audio blob url
-	var blob_link;
-	var au_gl;
-	var audio_blob;
 
-	function createDownloadLink(blob,encoding) {
+
+	function createDownloadLink(blob) {
 		
 
 		// audio data to send to server
@@ -1103,7 +1140,7 @@ window.addEventListener('load', init, false);
 
 		//link the a element to the blob
 		link.href = url;
-		link.download = new Date().toISOString() + '.'+encoding;
+		//link.download = new Date().toISOString() + '.'+encoding;
 		link.innerHTML = link.download;
 
 		//add the new audio and a elements to the li element
