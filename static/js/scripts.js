@@ -699,7 +699,7 @@ function loop(){
 
 	// if mic is open 
 	//draw the waveform
-	if (getUserMediaState == 'open'  ) {
+	if (getUserMediaState == 'open' && window.orientation == undefined) {
 		var canvasWidth = context.canvas.width;
 		var canvasHeight = context.canvas.height;
 		//draw the waveform
@@ -937,7 +937,7 @@ window.addEventListener('load', init, false);
 	      }).catch((e) => {
 	        console.error(e);
 	      });
-      }, 1000 );
+      }, 2000 );
 
     }
 
