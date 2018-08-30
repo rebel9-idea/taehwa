@@ -892,6 +892,7 @@ window.addEventListener('load', init, false);
 	//add events to those 2 buttons
 	$("#recordButton").click(function() {
 		startMP3Recording();
+		mic.open();
 	})
 	$("#stopButton").click(function() {
 		stopRecording();
@@ -911,7 +912,7 @@ window.addEventListener('load', init, false);
 		$('.record_ui #controls').hide();
 		$('#recordingsList').hide();
 		$('#recordingsList').html('');
-
+		$('#live_wave').show();
 
 		fft_hits = 0;
 		average_session_fft = 0;
