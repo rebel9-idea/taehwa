@@ -1640,7 +1640,10 @@ window.addEventListener('load', init, false);
 				</li></\
 			');
 
+
+			// wavesurfer doesnt work on safari for some reason.
 			if (!is_safari) {
+
 				wavesurfers[i] = WaveSurfer.create({
 				    container: '#archive_id_sound_'+datatouse[i].thenum,
 				    scrollParent: false,
@@ -1653,6 +1656,8 @@ window.addEventListener('load', init, false);
 				} else {
 					wavesurfers[i].load(domain+'/musicfile/'+datatouse[i].mediafname);
 				}				
+			} else {
+				$('.archive_sound').addClass('wavesurfer_bg');
 			}
 
 			

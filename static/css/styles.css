@@ -389,6 +389,11 @@ ul, li {
     transform: translate(-50%,-50%);
     display: none;
 }
+.archive_sound.wavesurfer_bg {
+	min-height: 40px;
+	background-image: url(img/icn_wave.svg);
+	background-image: contain;
+}
 .archive_sound wave {
 	max-height: 60px;
 	border:none !important;
