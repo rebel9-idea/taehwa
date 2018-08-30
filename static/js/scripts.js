@@ -23,7 +23,11 @@ const new_recorder = new MicRecorder({
   bitRate: 256
 });
 
-
+if(navigator.userAgent.match('CriOS')) {
+	$('.no_ios_chrome').show()	
+} else {
+	$('.no_ios_chrome').hide()	
+}
 
 
 // GENERAL STUFF
@@ -2149,10 +2153,7 @@ window.addEventListener('load', init, false);
 
 	function init(event){
 
-		if(navigator.userAgent.match('CriOS')) {
-			$('.no_ios_chrome').show()	
-		}
-		
+
 
 		if (is_debugging ) {
 			createScene();
