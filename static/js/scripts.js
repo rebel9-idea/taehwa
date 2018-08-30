@@ -1566,11 +1566,13 @@ window.addEventListener('load', init, false);
 
 	} else {
 
+
+	}
+
 		$(document).on('click','.archive_sound',function(){
 			var that = this;
 			playArchiveSound(that);
 		});
-	}
 
 	$( '.list_ui .text_wrap' ).on( "mousemove", function( event ) {
 	  $( ".list_tooltip" ).css({
