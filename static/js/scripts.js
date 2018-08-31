@@ -1362,7 +1362,7 @@ window.addEventListener('load', init, false);
 				onMoon = false;
 
 				$('.record_ui').fadeOut();
-				// $('.menu').fadeIn();
+				
 			}, 1000 );
 
 
@@ -1417,7 +1417,6 @@ window.addEventListener('load', init, false);
 						viewingBlob = true;
 
 						$('.record_ui').fadeOut();
-						// $('.menu').fadeIn();
 					}, 1000 );
 		
 
@@ -2178,6 +2177,7 @@ window.addEventListener('load', init, false);
 
 			$('.start_intro').click(function() {
 				getUserMedia();
+				$('.menu').fadeIn();
 				// playApollo();
 			});
 		} else {
