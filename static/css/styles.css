@@ -519,7 +519,7 @@ ul, li {
 	    padding: 10px 10px;
 	}
 	.list_ui .text_wrap {
-	    height: calc(100% - 80px);
+	    height: calc(100% - 85px);
 	}
 	.header_about .search_list input {
 		height: 41px;
