@@ -995,7 +995,7 @@ window.addEventListener('load', init, false);
 		mic.connect(analyser);
 
 		// hide menu temporarily
-		$('.menu_list ').fadeOut('fast');
+		$('.menu_list').fadeOut('fast');
 
 		navigator.mediaDevices.getUserMedia({ audio: true, video:false }).then(function(stream) {
 			getUserLocation();
