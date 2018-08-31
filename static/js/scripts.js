@@ -112,6 +112,7 @@ function getData() {
 
 		$('.start_intro').click(function() {
 			getUserMedia();
+			$('.menu').fadeIn();
 			
 		});
 	})
