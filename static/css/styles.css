@@ -104,7 +104,7 @@ ul, li {
     top: 25px;
     text-align: right;
     margin:0;
-    z-index: 99;
+    z-index: 100;
     /*display: none;*/
 }
 .menu ul {
@@ -245,6 +245,7 @@ ul, li {
 }
 .about_ui.base_popup {
 	background-color: rgba(20, 20, 20, 1);
+	z-index: 100;
 }
 .about_ui .text_wrap {
     overflow: auto;
@@ -257,6 +258,7 @@ ul, li {
 
 
 .list_ui  {
+	z-index: 101;
 }
 .list_ui .text_wrap ul {
 	display: block;

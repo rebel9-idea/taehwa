@@ -127,7 +127,7 @@ function getData() {
 	// get first page of data for list view
 	$.ajax({
 	  method: "GET",
-	  url: domain+"/music?action=pagination&page_size=24&page_num=1",
+	  url: domain+"/music?action=pagination&page_size=32&page_num=1",
 	  crossDomain: true
 	}).done(function(json, textStatus, jqXHR) {
 	    // print the output from the endpoint
@@ -1795,7 +1795,7 @@ window.addEventListener('load', init, false);
 		// get first page of data for list view
 		$.ajax({
 		  method: "GET",
-		  url: domain+"/music?action=pagination&page_size=24&page_num="+data_page_current,
+		  url: domain+"/music?action=pagination&page_size=32&page_num="+data_page_current,
 		  crossDomain: true
 		}).done(function(json, textStatus, jqXHR) {
 		    // print the output from the endpoint
