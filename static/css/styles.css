@@ -494,6 +494,10 @@ ul, li {
 	}
 	.list_ui .text_wrap li {
 		width: 33.333%;
+		min-height: 40px;
+	}
+	.list_ui .text_wrap li .archive_sound { 
+		display: block;
 	}
 	.list_ui .text_wrap li:nth-child(8n) {
 		border-right:1px solid #717171

@@ -1515,6 +1515,7 @@ window.addEventListener('load', init, false);
 		if (is_safari) {
 			var trigger_sound = $('.archive_sound')[0];
 			playArchiveSound(trigger_sound, 0.0);
+			$('body').addClass('is_safari');
 		}
 
 	})
