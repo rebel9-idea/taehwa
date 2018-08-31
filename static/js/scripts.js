@@ -994,6 +994,9 @@ window.addEventListener('load', init, false);
 		analyser = new Tone.Waveform(256);
 		mic.connect(analyser);
 
+		// hide menu temporarily
+		$('.menu_list ').fadeOut('fast');
+
 		navigator.mediaDevices.getUserMedia({ audio: true, video:false }).then(function(stream) {
 			getUserLocation();
 			console.log("getUserMedia() success, stream created, initializing WebAudioRecorder...");
@@ -1311,6 +1314,7 @@ window.addEventListener('load', init, false);
 		$('.intro_ui').fadeOut();
 		$('.record_ui').fadeIn();
 		$('#world').fadeIn('slow');
+		$('.menu_list').fadeIn('fast');
 		// fadeApollo("out");
 	})
 
