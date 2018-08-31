@@ -1797,7 +1797,7 @@ window.addEventListener('load', init, false);
 
 		    populateList(next_page_data)
 
-		    if ( (data_page_current + 1) == data_page_length ) {
+		    if ( (data_page_current + 1) == data_page_length || json.data.data.length == 0 ) {
 		    	$('.list_load_more').hide();
 		    }
 		    
