@@ -127,7 +127,7 @@ function getData() {
 	// get first page of data for list view
 	$.ajax({
 	  method: "GET",
-	  url: domain+"/music?action=pagination&page_size=24&page_num=1",
+	  url: domain+"/music?action=pagination&page_size=50&page_num=1",
 	  crossDomain: true
 	}).done(function(json, textStatus, jqXHR) {
 	    // print the output from the endpoint
@@ -1802,7 +1802,7 @@ window.addEventListener('load', init, false);
 		// get first page of data for list view
 		$.ajax({
 		  method: "GET",
-		  url: domain+"/music?action=pagination&page_size=24&page_num="+data_page_current,
+		  url: domain+"/music?action=pagination&page_size=50&page_num="+data_page_current,
 		  crossDomain: true
 		}).done(function(json, textStatus, jqXHR) {
 		    // print the output from the endpoint
@@ -1813,9 +1813,9 @@ window.addEventListener('load', init, false);
 
 		    populateList(next_page_data)
 
-		    if ( (data_page_current + 1) == data_page_length || json.data.data.length == 0 ) {
-		    	$('.list_load_more').hide();
-		    }
+		    // if ( (data_page_current + 1) == data_page_length || json.data.data.length == 0 ) {
+		    // 	$('.list_load_more').hide();
+		    // }
 		    
 		})
 		.fail(function(jqXHR, textStatus, errorThrown) {
