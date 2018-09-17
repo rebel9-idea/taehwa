@@ -332,7 +332,7 @@ Island = function(){
 	// To distribute the clouds consistently,
 	// we need to place them according to a uniform angle
 	
-	for(var i = 0; i < server_data.length; i++){
+	for(var i = 0; i < 200; i++){
 		var c = new Land(i);
 		this.lands.push(c);
 
